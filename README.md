@@ -1,1 +1,1 @@
-# final-argocd
+# argocd

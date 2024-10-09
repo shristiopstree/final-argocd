@@ -1,0 +1,68 @@
+global:
+  namespace: "cp3"
+  fullnameOverride: "guestbook"
+  environment: {}
+  replicaCount: 1
+
+serviceAccount:
+  enabled: true
+  name: guestbook-sa
+
+deployment:
+  annotations: {}
+  environment: {}
+
+  healthProbes:
+    enabled: false
+  livenessProbe:
+    httpGet:
+      path: "/health"
+      port: 80
+    initialDelaySeconds: 10
+    periodSeconds: 30
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 3
+  readinessProbe:
+    httpGet:
+      path: "/ready"
+      port: 80
+    initialDelaySeconds: 5
+    periodSeconds: 30
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 3
+
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "256Mi"
+    limits:
+      cpu: "200m"
+      memory: "512Mi"
+
+image:
+  repository: "gcr.io/heptio-images/ks-guestbook-demo"
+  tag: "0.1"
+  pullPolicy: Always
+
+nodeSelector:
+  eks.amazonaws.com/nodegroup: sd2test-main-pvt-nodes
+
+affinity: {}
+
+tolerations: {}
+
+service:
+  type: ClusterIP
+  specs:
+    - name: http
+      port: 80
+      targetPort: 80
+      protocol: TCP
+
+secrets:
+  database-password:
+    key: "/path/to/your/secret/database-password"
+  api-key:
+    key: "/path/to/your/secret/api-key"

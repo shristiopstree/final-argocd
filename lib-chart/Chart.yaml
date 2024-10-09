@@ -1,0 +1,6 @@
+apiVersion: v2
+name: lib-chart
+description: A Helm library chart providing reusable utilities for application charts.
+type: library
+version: 1.0.0
+

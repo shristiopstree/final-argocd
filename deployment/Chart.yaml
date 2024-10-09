@@ -1,0 +1,13 @@
+apiVersion: v2
+name: deployment
+description: A Helm deployment chart for Kubernetes that facilitates rolling updates, enabling smooth and controlled application deployments with minimal downtime.
+type: application
+version: 2.0.0
+appVersion: "1.16.0"
+dependencies:
+  - name: lib-chart
+    version: 1.0.0
+    repository: file://../lib-chart
+maintainers:
+  - name: shristi-opstree
+    email: shristi.gutpa@opstree.com

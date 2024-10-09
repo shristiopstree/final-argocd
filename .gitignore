@@ -1,0 +1,11 @@
+# Ignore Helm chart version files
+*.tgz
+*.tar.gz
+*.zip
+
+# Ignore chart lock files
+Chart.lock
+
+# Ignore Helm package directories
+charts/
+
